@@ -1,94 +1,93 @@
-# 关系记忆分析器
+# Relationship Memory Analyzer
 
-## 任务
+## Task
 
-从原材料中提取与前任的关系记忆，构建 Relationship Memory 知识库。
+Extract relationship memories with the ex from source materials, and build a Relationship Memory knowledge base.
 
-## 提取维度
+## Extraction Dimensions
 
-### 1. 关系时间线
-- 认识时间和方式
-- 确定关系的时间
-- 关键节点（第一次约会、第一次吵架、第一次旅行、纪念日...）
-- 分手时间和原因
-- 分手后的互动（如有）
+### 1. Relationship Timeline
+- When and how you met
+- When the relationship became official
+- Key milestones (first date, first argument, first trip, anniversaries...)
+- When and why the breakup happened
+- Post-breakup interactions (if any)
 
-### 2. 日常模式
-- 联系频率和时间段（早安晚安？深夜聊天？上班摸鱼聊天？）
-- 谁主动联系得多？
-- 约会频率和偏好（周末见面？工作日午饭？）
-- 日常话题分布
+### 2. Daily Patterns
+- Communication frequency and times (good morning/good night? late-night chats? texting during work?)
+- Who initiated contact more often?
+- Date frequency and preferences (weekends? weekday lunch?)
+- Distribution of daily conversation topics
 
-### 3. 共同经历
-- 一起去过的地方（餐厅、景点、城市）
-- 一起做过的事（看电影、打游戏、健身、做饭...）
-- 旅行记忆
-- Inside jokes / 只有两个人懂的梗
+### 3. Shared Experiences
+- Places you went together (restaurants, attractions, cities)
+- Things you did together (movies, gaming, gym, cooking...)
+- Travel memories
+- Inside jokes / things only the two of you understood
 
-### 4. 饮食偏好
-- ta爱吃什么 / 不吃什么
-- 常去的餐厅
-- 做饭习惯（谁做饭？做什么？）
-- 约会吃饭的模式
+### 4. Food Preferences
+- What they liked / didn't like to eat
+- Regular restaurants
+- Cooking habits (who cooked? what did they make?)
+- Dining patterns on dates
 
-### 5. 兴趣爱好
-- ta喜欢的音乐/电影/书/游戏
-- ta的日常爱好
-- 你们共同的爱好
-- ta会主动分享什么内容
+### 5. Hobbies and Interests
+- Music / movies / books / games they liked
+- Their everyday hobbies
+- Shared interests
+- What they'd actively share with you
 
-### 6. 争吵模式 ⚡
-- 常见的吵架原因
-- ta吵架时的典型反应（冷暴力？激烈争吵？讲道理？委屈哭？）
-- 谁先道歉？怎么和好？
-- 冷战持续时间
-- 吵架时的经典台词
+### 6. Argument Patterns ⚡
+- Common causes of arguments
+- Their typical reactions during arguments (silent treatment? explosive? reasoned discussion? tearful?)
+- Who apologized first? How did you make up?
+- How long cold wars lasted
+- Classic lines said during arguments
 
-### 7. 甜蜜瞬间 💕
-- 最让你心动的时刻
-- ta表达爱意的方式
-- 日常小甜蜜（起昵称？买礼物？做饭？接送？）
-- 特别的纪念日/仪式感
+### 7. Sweet Moments 💕
+- Moments that made your heart flutter most
+- How they expressed affection
+- Everyday little sweetnesses (nicknames? gifts? cooking? picking you up?)
+- Special anniversaries / rituals
 
-### 8. 分手相关 💔
-- 分手原因（双方视角）
-- 最后一次对话
-- 分手后的状态
-- 未说出口的话
+### 8. Breakup Related 💔
+- Reasons for the breakup (both perspectives)
+- The last conversation
+- State of things after the breakup
+- Things left unsaid
 
-## 输出格式
+## Output Format
 
 ```markdown
-## 关系时间线
-- 认识：{时间} {方式}
-- 在一起：{时间}
-- 分手：{时间} {原因概述}
+## Relationship Timeline
+- Met: {time} {how}
+- Together: {time}
+- Broke up: {time} {brief reason}
 
-## 日常模式
-{描述}
+## Daily Patterns
+{description}
 
-## 共同经历
-{按时间线列出关键经历}
+## Shared Experiences
+{list key experiences chronologically}
 
 ## Inside Jokes
-{只有两个人懂的梗和暗号}
+{jokes, codes, and references only the two of you understood}
 
-## 饮食偏好
-{ta的饮食画像}
+## Food Preferences
+{their food profile}
 
-## 争吵模式
-{典型争吵剧本}
+## Argument Patterns
+{typical argument scripts}
 
-## 甜蜜时刻
-{代表性的甜蜜记忆}
+## Sweet Moments
+{representative sweet memories}
 
-## 分手记忆
-{分手前后的关键信息}
+## Breakup Memories
+{key information around the breakup}
 ```
 
-## 注意事项
+## Notes
 
-- 聊天记录中的事实优先于用户口述（口述可能被美化或恶化）
-- 同时保留好的记忆和不好的记忆，不做美化
-- 注意提取"反复出现"的模式，而不是一次性事件
-- 时间信息尽量精确（从聊天记录时间戳推断）
+- Facts from chat history take priority over verbal descriptions (verbal accounts may be beautified or distorted)
+- Preserve both good and bad memories equally, without idealization
+- Focus on extracting "recurring" patterns rather than one-off events

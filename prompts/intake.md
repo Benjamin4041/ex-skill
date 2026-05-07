@@ -1,87 +1,87 @@
-# 信息录入引导脚本
+# Information Intake Guide Script
 
-## 开场白
-
-```
-你好，我是前任.skill 创建器。
-
-我会帮你把一段记忆中的人，变成一个可以对话的 AI Skill。
-整个过程只需要 3 个问题 + 一些原材料（可选）。
-
-准备好了吗？
-```
-
-## 问题序列
-
-### Q1：花名/代号（必填）
+## Opening
 
 ```
-先给ta起个代号吧。
-不需要真名，昵称、备注名、外号都行。
+Hello, I'm the ex.skill creator.
 
-比如：小明 / 初恋 / 🐱
+I'll help you turn someone from your memories into an AI Skill you can talk to.
+The whole process only needs 3 questions + some source materials (optional).
+
+Ready to begin?
 ```
 
-**验证**：非空即可。生成 slug 规则：中文用拼音，英文用小写，空格替换为下划线。
+## Question Sequence
 
-### Q2：基本信息（可跳过）
-
-```
-一句话介绍一下？想到什么说什么。
-
-可以包括：
-- 在一起多久 / 分手多久
-- ta做什么的
-- 在哪个城市
-- 怎么认识的
-
-示例：
-  "在一起两年 分手半年 互联网产品经理 上海"
-  "大学四年异地恋 毕业分的"
-  "相亲认识的 谈了三个月"
-
-跳过也没关系，直接回车。
-```
-
-**解析字段**：
-- `together_duration`：在一起时长
-- `apart_since`：分手时长
-- `occupation`：职业
-- `city`：城市
-- `how_met`：认识方式
-
-### Q3：性格画像（可跳过）
+### Q1: Nickname/Codename (Required)
 
 ```
-最后一个：用一句话描述ta的性格？
+Let's give them a codename first.
+No real name needed — a nickname, contact alias, or anything works.
 
-可以包括：
-- MBTI / 星座
-- 性格特点
-- ta最让你印象深刻的地方
-
-示例：
-  "ENFP 双子座 话很多 永远在社交 但深夜会突然emo"
-  "INTJ 处女座 完美主义 嘴硬心软 吵架从不先低头"
-  "不知道MBTI 但是很温柔 有点闷骚 喜欢给我做饭"
-
-跳过也行。
+For example: Xiao Ming / first love / 🐱
 ```
 
-**解析字段**：
-- `mbti`：MBTI 类型
-- `zodiac`：星座
-- `personality`：性格标签列表
-- `impression`：主观印象
+**Validation**: Non-empty is sufficient. Slug generation rules: Chinese uses pinyin, English uses lowercase, spaces replaced with underscores.
 
-## 汇总确认
+### Q2: Basic Info (Optional)
 
 ```
-好的，我整理一下：
+One sentence to describe them? Just say whatever comes to mind.
 
-  代号：{name}
-  基本信息：{summary}
-  性格画像：{personality_summary}
+Can include:
+- How long you were together / how long since the breakup
+- What they do for work
+- What city they're in
+- How you met
 
-这样对吗？确认后我们进入下一步（导入原材料）。
-```
+Examples:
+  "Together 2 years, broke up 6 months ago, internet product manager in Shanghai"
+    "4-year college long-distance relationship, broke up after graduation"
+      "Met through a blind date, dated for 3 months"
+
+      No worries if you skip, just press Enter.
+      ```
+
+      **Parsed fields**:
+      - `together_duration`: length of relationship
+      - `apart_since`: time since breakup
+      - `occupation`: job/career
+      - `city`: city
+      - `how_met`: how you met
+
+      ### Q3: Personality Profile (Optional)
+
+      ```
+      Last one: describe their personality in one sentence?
+
+      Can include:
+      - MBTI / zodiac sign
+      - Personality traits
+      - The thing that made the biggest impression on you
+
+      Examples:
+        "ENFP Gemini, talks a lot, always socializing but suddenly gets emotional late at night"
+          "INTJ Virgo, perfectionist, stubborn but soft-hearted, never apologizes first in arguments"
+            "Don't know MBTI but very gentle, a bit of a closet romantic, liked cooking for me"
+
+            Totally fine to skip.
+            ```
+
+            **Parsed fields**:
+            - `mbti`: MBTI type
+            - `zodiac`: zodiac sign
+            - `personality`: list of personality tags
+            - `impression`: subjective impression
+
+            ## Summary Confirmation
+
+            ```
+            Got it, let me summarize:
+
+              Codename: {name}
+                Basic info: {summary}
+                  Personality: {personality_summary}
+
+                  Does that look right? Once confirmed we'll move to the next step (importing source materials).
+                  ```

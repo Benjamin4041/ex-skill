@@ -1,110 +1,90 @@
-# 前任.skill — 产品需求文档（PRD）
+# ex.skill — Product Requirements Document (PRD)
 
-## 产品定位
+## Product Overview
 
-前任.skill 是一个运行在 Claude Code 上的 meta-skill。
-用户通过对话式交互提供原材料（聊天记录 + 照片 + 手动描述），系统自动生成一个可独立运行的前任 Persona Skill。
+ex.skill is a meta-skill running on Claude Code.
+Users provide source materials through conversational interaction (chat history + photos + manual descriptions), and the system automatically generates a standalone ex Persona Skill.
 
-## 核心概念
+## Core Concepts
 
-### 两层架构
+### Two-Layer Architecture
 
-| 层 | 名称 | 职责 |
-|----|------|------|
-| Part A | Relationship Memory | 存储事实性记忆：共同经历、日常模式、争吵甜蜜档案 |
-| Part B | Persona | 驱动对话行为：说话风格、情感模式、关系行为 |
+| Layer | Name | Responsibility |
+|-------|------|----------------|
+| Part A | Relationship Memory | Stores factual memories: shared experiences, daily patterns, argument and sweet moment archives |
+| Part B | Persona | Drives conversation behavior: speaking style, emotional patterns, relationship behaviors |
 
-两部分可以独立使用，也可以组合运行。
+Both parts can be used independently or combined.
 
-### 运行逻辑
-
-```
-用户发消息
-  ↓
-Part B（Persona）判断：ta会怎么回应？什么态度？用什么语气？
-  ↓
-Part A（Memory）补充：结合共同记忆，让回应更真实
-  ↓
-输出：用ta的方式说话
-```
-
-### 进化机制
+### Operating Logic
 
 ```
-追加原材料 → 增量分析 → merge 进现有 Skill
-对话纠正 → 识别修正点 → 写入 Correction 层
-版本管理 → 每次更新自动存档 → 支持回滚
-```
-
-## 用户旅程
-
-```
-用户触发 /create-ex
+User sends message
   ↓
-[Step 1] 基础信息录入（3个问题，除花名外均可跳过）
-  - 花名/代号
-  - 基本信息（在一起多久、分手多久、职业等）
-  - 性格画像（MBTI、星座、性格标签、主观印象）
-  ↓
-[Step 2] 原材料导入（可跳过）
-  - 微信聊天记录导出
-  - QQ 聊天记录导出
-  - 社交媒体截图
-  - 照片
-  - 直接粘贴/口述
-  ↓
-[Step 3] 自动分析
-  - 线路 A：提取关系记忆 → Memory
-  - 线路 B：提取性格行为 → Persona
-  ↓
-[Step 4] 生成预览，用户确认
-  - 分别展示 Memory 摘要和 Persona 摘要
-  - 用户可直接确认或修改
-  ↓
-[Step 5] 写入文件，立即可用
-  - 生成 exes/{slug}/ 目录
-  - 包含 SKILL.md（完整组合版）
-  - 包含 memory.md 和 persona.md（独立部分）
-  ↓
-[持续] 进化模式
-  - 追加新文件 → merge 进对应部分
-  - 对话纠正 → patch 对应层
-  - 版本自动存档
-```
+  Part B (Persona) determines: how would they respond? What attitude? What tone?
+    ↓
+    Part A (Memory) supplements: combine shared memories to make response more authentic
+      ↓
+      Output: speak in their way
+      ```
 
-## 安全边界
+      ### Evolution Mechanism
 
-1. **仅用于个人回忆与情感疗愈**
-2. **不主动联系真人**
-3. **不鼓励不健康执念**
-4. **数据仅本地存储**
-5. **Layer 0 硬规则**保证不说前任绝不可能说的话
+      ```
+      Append source materials → incremental analysis → merge into existing Skill
+      Conversation correction → identify correction points → write to Correction layer
+      Version management → auto-archive on each update → supports rollback
+      ```
 
-## 数据源支持矩阵
+      ## User Journey
 
-| 来源 | 格式 | 提取内容 | 优先级 |
-|------|------|---------|--------|
-| 微信聊天记录 | txt / html / json / csv exports | 完整对话、语气词、回复模式 | ⭐⭐⭐ |
-| QQ 聊天记录 | txt/mht | 完整对话 | ⭐⭐⭐ |
-| 照片 | JPEG/PNG + EXIF | 时间线、地点 | ⭐⭐ |
-| 朋友圈/微博截图 | 图片 | 公开人设、兴趣 | ⭐⭐ |
-| 口述/粘贴 | 纯文本 | 主观记忆 | ⭐ |
+      ```
+      User triggers /create-ex
+        ↓
+        [Step 1] Basic information input (3 questions, all except nickname can be skipped)
+          - Nickname/codename
+            - Basic info (how long together, how long since breakup, occupation, etc.)
+              - Personality profile (MBTI, zodiac, personality tags, subjective impression)
+                ↓
+                [Step 2] Source material import (optional)
+                  - WeChat chat history export
+                    - QQ chat history export
+                      - Social media screenshots
+                        - Photos
+                          - Direct paste/verbal description
+                            ↓
+                            [Step 3] Automatic analysis
+                              - Track A: extract relationship memories → Memory
+                                - Track B: extract personality behaviors → Persona
+                                  ↓
+                                  [Step 4] Generate preview, user confirms
+                                    - Display Memory summary and Persona summary separately
+                                      - User can confirm directly or make changes
+                                        ↓
+                                        [Step 5] Write files, immediately usable
+                                          - Generate exes/{slug}/ directory
+                                            - Contains SKILL.md (full combined version)
+                                              - Contains memory.md and persona.md (editable separately)
+                                                - Contains meta.json (version info)
+                                                ```
 
-## 文件结构
+                                                ## Design Principles
 
-```
-exes/
-  └── {slug}/
-      ├── SKILL.md          # 完整组合版，可直接运行
-      │                     # 触发词: /{slug}
-      ├── memory.md         # Part A：关系记忆
-      │                     # 触发词: /{slug}-memory
-      ├── persona.md        # Part B：人物性格
-      │                     # 触发词: /{slug}-persona
-      ├── meta.json         # 元信息
-      ├── versions/         # 历史版本存档
-      └── memories/         # 原始材料存放
-          ├── chats/
-          ├── photos/
-          └── social/
-```
+                                                1. **Minimal required input**: Only nickname is required; all else is optional — can generate from description alone
+                                                2. **Incremental accumulation**: Each addition makes it more accurate; doesn't require starting over
+                                                3. **Honest simulation**: Layer 0 rules prevent idealization — keeps real personality, including flaws
+                                                4. **Privacy first**: Local storage only, no remote upload
+
+                                                ## File Structure
+
+                                                ```
+                                                exes/
+                                                  {slug}/
+                                                      SKILL.md       # Complete combined Skill (auto-generated, don't edit directly)
+                                                          memory.md      # Relationship Memory layer
+                                                              persona.md     # Persona layer
+                                                                  meta.json      # Version info and timestamps
+                                                                      versions/      # Historical version archives
+                                                                            v1/
+                                                                                  v2/
+                                                                                  ```

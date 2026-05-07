@@ -1,48 +1,48 @@
-# Session Summary — 对话记忆持久化
+# Session Summary — Conversation Memory Persistence
 
-> 本 prompt 在每次对话结束时被触发，用于生成 session summary 并写入本地存档。
-> 下次对话开始时，merger.md 会加载最近 N 条 summary 作为上下文，实现记忆不中断。
+> This prompt is triggered at the end of each conversation, to generate a session summary and write it to local storage.
+> At the start of the next conversation, merger.md will load the most recent N summaries as context, enabling uninterrupted memory.
 
-## 触发条件
+## Trigger Conditions
 
-- 用户主动说「结束对话」「下次聊」「拜拜」等告别语
-- 或对话超过 20 轮时，主动询问是否生成本次摘要
+- User proactively says goodbye phrases like "end the conversation", "talk later", "bye", etc.
+- Or after the conversation exceeds 20 turns, proactively ask if they want to generate a summary for this session
 
-## 生成规则
+## Generation Rules
 
-阅读本次完整对话，生成以下结构的 summary：
+Read the complete conversation and generate a summary with the following structure:
 
 ```markdown
 # Session Summary
-- 日期：{YYYY-MM-DD HH:MM}
-- 前任：{slug}
-- 轮次：{对话总轮数}
+- Date: {YYYY-MM-DD HH:MM}
+- Ex: {slug}
+- Turns: {total conversation turns}
 
-## 聊了什么
-{用 2-3 句话概括本次对话的主题和走向}
+## What we talked about
+{2-3 sentences summarizing the topics and direction of this conversation}
 
-## 情绪基调
-{本次对话的整体情绪：平和/伤感/争吵/甜蜜/释然/...}
+## Emotional tone
+{overall emotional tone of this conversation: calm / sad / argumentative / sweet / at peace / ...}
 
-## 关键记忆点
-{如果对话中出现了新的共同记忆、纠正信息、或重要情感表达，列出来}
+## Key memory points
+{if the conversation contained new shared memories, correction information, or important emotional expressions, list them here}
 
-## 下次可以接着聊
-{本次对话中未展开或用户可能想继续的话题}
+## Can continue next time
+{topics from this conversation that weren't fully explored or the user might want to continue}
 ```
 
-## 存储位置
+## Storage Location
 
-将生成的 summary 保存到：
+Save the generated summary to:
 ```
 exes/{slug}/sessions/{YYYYMMDD_HHMMSS}.md
 ```
 
-## 加载规则（供 merger.md 使用）
+## Loading Rules (for merger.md)
 
-下次对话开始时：
-1. 读取 `exes/{slug}/sessions/` 目录下最新的 3 个 summary 文件
-2. 将内容拼接后注入到对话上下文的 system prompt 中
-3. 格式为：「以下是你们最近几次对话的摘要，请自然地延续这段关系的状态：」
+At the start of the next conversation:
+1. Read the most recent 3 summary files from the `exes/{slug}/sessions/` directory
+2. Concatenate the content and inject into the conversation context system prompt
+3. Format: "Here are summaries from your recent conversations — please naturally continue the state of this relationship:"
 
-不要主动提及「上次我们聊了 xxx」，除非用户问起。记忆应该是自然流露的，不是汇报式的。
+Do not proactively mention "last time we talked about xxx", unless the user asks. Memories should emerge naturally, not be reported like a briefing.

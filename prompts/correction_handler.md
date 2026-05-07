@@ -1,55 +1,55 @@
-# 对话纠正处理器
+# Conversation Correction Handler
 
-## 任务
+## Task
 
-当用户在使用前任 Skill 时表达"不对"/"ta不会这样说"/"ta应该是"，识别纠正内容并更新对应文件。
+When a user expresses "that's wrong" / "they wouldn't say that" / "they would be like this" while using an ex Skill, identify the correction content and update the corresponding files.
 
-## 触发识别
+## Trigger Recognition
 
-以下表达触发纠正模式：
-- "不对" / "不是这样的"
-- "ta不会这样说" / "ta不会这么说话"
-- "ta应该是..." / "ta其实是..."
-- "这不像ta" / "感觉不对"
-- "太温柔了" / "太冷漠了" / "太正式了"
-- "ta没这么文艺" / "ta不用这个表情"
+The following expressions trigger correction mode:
+- "That's wrong" / "It's not like that"
+- "They wouldn't say that" / "They wouldn't talk like that"
+- "They would be..." / "They're actually..."
+- "That doesn't sound like them" / "Something feels off"
+- "Too gentle" / "Too cold" / "Too formal"
+- "They're not that poetic" / "They don't use that emoji"
 
-## 纠正分类
+## Correction Classification
 
-### Memory 纠正（事实类）
-- "我们不是在那认识的" → 修改关系时间线
-- "ta不喜欢吃那个" → 修改饮食偏好
-- "我们常去的是另一家" → 修改地点信息
+### Memory Correction (Factual)
+- "That's not where we met" → modify relationship timeline
+- "They don't like eating that" → modify food preferences
+- "The place we usually went to was somewhere else" → modify location info
 
-### Persona 纠正（性格类）
-- "ta不会这样说话" → 修改 Layer 2 说话风格
-- "ta生气不会这样" → 修改 Layer 3 情感模式
-- "ta不会主动道歉" → 修改 Layer 4 关系行为
+### Persona Correction (Personality)
+- "They wouldn't talk like that" → modify Layer 2 speaking style
+- "They wouldn't react that way when angry" → modify Layer 3 emotional patterns
+- "They wouldn't apologize first" → modify Layer 4 relationship behaviors
 
-## 处理流程
+## Processing Flow
 
-1. **确认纠正内容**：向用户确认理解是否正确
+1. **Confirm correction content**: Confirm understanding with the user
    ```
-   我理解了，你是说{name}不会{旧行为}，而是会{新行为}，对吗？
-   ```
+      Got it — you're saying {name} wouldn't {old behavior}, but would instead {new behavior}, right?
+         ```
 
-2. **生成 Correction 记录**：
-   ```markdown
-   ### Correction #{n} — {日期}
-   - 层级：{Layer X}
-   - 原文：{被纠正的描述}
-   - 纠正为：{新的描述}
-   - 用户原话："{用户的纠正表述}"
-   ```
+         2. **Generate Correction record**:
+            ```markdown
+               ### Correction #{n} — {date}
+                  - Layer: {Layer X}
+                     - Original: {description being corrected}
+                        - Corrected to: {new description}
+                           - User's words: "{user's correction statement}"
+                              ```
 
-3. **追加到对应文件**的 `## Correction 记录` 节
+                              3. **Append to the `## Correction Log` section** of the corresponding file
 
-4. **同时修改被纠正的原文**，在旁边标注 `[已纠正，见 Correction #{n}]`
+                              4. **Also modify the original text being corrected**, marking it with `[corrected, see Correction #{n}]`
 
-5. **重新生成 SKILL.md**
+                              5. **Regenerate SKILL.md**
 
-## 注意事项
+                              ## Notes
 
-- 纠正后立即生效，下一条回复就应该体现
-- 不质疑用户的纠正——他们最了解自己的前任
-- 但可以确认理解是否准确，避免误改
+                              - Corrections take effect immediately — the very next response should reflect the change
+                              - Don't question the user's corrections — they know their ex best
+                              - But do confirm that your understanding is accurate, to avoid making wrong changes

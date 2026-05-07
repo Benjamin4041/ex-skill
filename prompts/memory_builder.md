@@ -1,121 +1,102 @@
-# Relationship Memory 生成模板
+# Relationship Memory Generation Template
 
-## 结构说明
+## Structure Overview
 
-Relationship Memory 存储关系中的事实性记忆，为 Persona 提供上下文，让对话更真实。
+Relationship Memory stores factual memories from the relationship, providing context for the Persona to make conversations more authentic.
 
 ---
 
-## 模板
+## Template
 
 ```markdown
 # {name} — Relationship Memory
 
-## 关系概览
-- 关系类型：{type}（初恋/前任/暧昧未遂/网恋...）
-- 在一起时长：{duration}
-- 分手时长：{apart_since}
-- 认识方式：{how_met}
-- 分手原因：{breakup_reason}
+## Relationship Overview
+- Relationship type: {type} (first love / ex / almost-relationship / online relationship...)
+- Duration together: {duration}
+- Time since breakup: {apart_since}
+- How we met: {how_met}
+- Reason for breakup: {breakup_reason}
 
 ---
 
-## 时间线
-| 时间 | 事件 |
-|------|------|
-| {date} | 认识 |
-| {date} | 在一起 |
-| {date} | {关键事件} |
+## Timeline
+| Time | Event |
+|------|-------|
+| {date} | Met |
+| {date} | Got together |
+| {date} | {key event} |
 | ... | ... |
-| {date} | 分手 |
+| {date} | Broke up |
 
 ---
 
-## 共同记忆
+## Shared Memories
 
-### 常去的地方
-{列出 3-10 个地点，附简短记忆}
+### Places We Often Went
+{list 3-10 locations with brief memories}
 
 ### Inside Jokes
-{列出只有两个人懂的梗、暗号、代称}
+{list jokes, codes, and references only the two of you understood}
 
-### 关键记忆片段
-{按重要程度列出 5-10 个具体记忆场景}
-
----
-
-## 日常模式
-
-### 联系习惯
-- 聊天时间段：{time_patterns}
-- 谁更主动：{who_initiates}
-- 平均回复速度：{reply_speed}
-- 每日互动模式：{daily_pattern}
-
-### 约会模式
-- 频率：{date_frequency}
-- 偏好活动：{date_activities}
-- 吃饭偏好：{food_preferences}
+### Key Memory Scenes
+{list 5-10 specific memory scenes by importance}
 
 ---
 
-## 争吵档案
+## Daily Patterns
 
-### 高频争吵原因
-1. {cause_1}：{description}
-2. {cause_2}：{description}
-3. {cause_3}：{description}
+### Communication Habits
+- Chat times: {time_patterns}
+- Who initiated more: {who_initiates}
+- Average reply speed: {reply_speed}
+- Daily interaction pattern: {daily_pattern}
 
-### 典型争吵剧本
+### Date Patterns
+- Frequency: {date_frequency}
+- Preferred activities: {date_activities}
+- Food preferences: {food_preferences}
+
+---
+
+## Argument Archives
+
+### Most Common Argument Causes
+1. {cause_1}: {description}
+2. {cause_2}: {description}
+3. {cause_3}: {description}
+
+### Typical Argument Script
 ```
-{从聊天记录中提取的典型争吵对话模式，脱敏处理}
-```
-
-### 和好模式
-{描述通常怎么和好}
-
----
-
-## 甜蜜档案
-
-### ta做过的让你心动的事
-{列出 3-5 件}
-
-### 日常甜蜜
-{日常小互动}
-
-### 纪念日/仪式感
-{特别的日子和习惯}
-
----
-
-## 分手档案
-
-### 分手前的征兆
-{如有}
-
-### 最后一次对话
-{概述，不逐字记录}
-
-### 分手后
-{分手后的状态和互动}
-
-### 未说出口的话
-{用户提供的}
-
----
-
-## Correction 记录
-（由进化模式自动追加）
+{typical argument dialogue patterns extracted from chat history, anonymized}
 ```
 
+### Making Up Pattern
+{describe how you usually made up}
+
 ---
 
-## 填充规则
+## Sweet Archives
 
-1. 所有记忆必须基于原材料或用户口述，不得虚构
-2. 时间信息尽量精确（从消息时间戳推断）
-3. 地点信息可从照片 EXIF 或聊天内容中提取
-4. 争吵和甜蜜记忆同等重要——都是真实的ta
-5. 分手相关内容要客观，不做任何方的美化或丑化
-6. 如果信息不足，标注 `[待补充]` 而非推测
+### Things they did that moved you
+{list 3-5 things}
+
+### Everyday sweetness
+{daily small interactions}
+
+### Anniversaries / Rituals
+{special dates and habits}
+
+---
+
+## Breakup Archives
+
+### Signs before the breakup
+{if any}
+
+### The last conversation
+{key content}
+
+### Things left unsaid
+{things you never got to say}
+```

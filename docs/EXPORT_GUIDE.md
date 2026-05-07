@@ -1,69 +1,66 @@
-# 聊天记录导入指南
+# Chat History Import Guide
 
-ex-skill 接受纯文本格式的聊天记录。你不需要任何专门的导出工具，下面是几种获取聊天文本的方式。
+ex-skill accepts chat history in plain text format. You don't need any specialized export tools — here are several ways to obtain chat text.
 
 ---
 
-## 方式一：直接复制粘贴（最简单）
+## Method 1: Direct Copy-Paste (Simplest)
 
-打开跟前任的聊天窗口，手动选中消息，复制，粘贴到一个 txt 文件里。
+Open the chat window with your ex, manually select messages, copy, and paste into a txt file.
 
-微信和 QQ 的电脑端都支持在聊天窗口内选中多条消息复制。手机端可以长按消息 → 多选 → 复制，或者通过「合并转发」发给自己的电脑端再复制。
+Both WeChat and QQ desktop clients support selecting multiple messages in the chat window for copying. On mobile, you can long-press a message → multi-select → copy, or use "Merge Forward" to send to your desktop client and copy from there.
 
-格式不需要规范。只要能分清谁说的哪句话就行，比如：
+The format doesn't need to be precise. As long as you can tell who said what, like:
 
 ```
-我：在干嘛
-ta：刚下班 累死了
-我：要不要一起吃饭
-ta：算了 不想动
+Me: What are you up to
+Them: Just got off work, exhausted
+Me: Want to grab dinner?
+Them: Nah, don't want to move
 ```
 
-这种程度就够了。Claude 能处理。
+That level is enough. Claude can handle it.
 
 ---
 
-## 方式二：截图 + 口述
+## Method 2: Screenshots + Verbal Description
 
-如果聊天记录太长不想复制，可以直接截图上传。ex-skill 支持图片输入，Claude 会从截图中提取对话内容。
+If the chat history is too long to copy, you can directly take screenshots and upload them. ex-skill supports image input, and Claude will extract conversation content from the screenshots.
 
-也可以什么都不导，纯靠口述：描述前任的说话方式、性格特点、你们之间的故事。仅凭描述也能生成 Skill，只是还原度不如真实记录高。
-
----
-
-## 方式三：利用平台自带的备份功能
-
-微信和 QQ 都有官方的聊天记录备份/迁移功能，可以把手机端的记录同步到电脑端：
-
-**微信：** 手机微信 → 设置 → 聊天 → 聊天记录迁移与备份 → 迁移到电脑微信
-
-**QQ：** 手机 QQ 可以通过「合并转发」把消息发到「我的电脑」，电脑端接收后复制文本
-
-同步到电脑后，在聊天窗口内选中消息复制即可。
+You can also provide nothing at all, relying purely on verbal description: describe how your ex talked, their personality traits, and the story between you two. A Skill can be generated from description alone, though accuracy won't be as high as with real records.
 
 ---
 
-## 关于第三方导出工具
+## Method 3: Use Platform Built-in Backup Features
 
-微信的聊天记录存储在本地加密数据库中。GitHub 上曾经有不少开源工具可以解密并批量导出，但由于微信频繁更新加密方式并对此类工具发出警告，这些项目的存活周期普遍很短。
+Both WeChat and QQ have official chat history backup/migration features that can sync phone records to desktop:
 
-**本项目不推荐、不捆绑、不包含任何第三方聊天记录解密/导出工具。** 如果你有技术能力并且了解相关风险，可以自行在 GitHub 上搜索当前可用的方案，但请注意：
+**WeChat:** Mobile WeChat → Settings → Chat → Chat History Migration & Backup → Migrate to WeChat Desktop
 
-- 这些工具可能随时失效
-- 使用此类工具可能违反平台服务条款
-- 本项目对第三方工具的安全性和合法性不做任何保证
+**QQ:** Mobile QQ can use "Merge Forward" to send messages to "My Computer", then copy text from desktop client after receiving
+
+After syncing to desktop, select messages in the chat window and copy.
 
 ---
 
-## 什么内容最有价值？
+## About Third-Party Export Tools
 
-不管用哪种方式，优先提供这些内容（按价值排序）：
+WeChat stores chat history in locally encrypted databases. There used to be many open-source tools on GitHub that could decrypt and batch-export these, but since WeChat frequently updates its encryption methods and issues warnings against such tools, these projects generally have short lifespans.
 
-1. **深夜对话** — 最能暴露真实性格
-2. **争吵/冲突记录** — 冲突中的反应比日常更真实
-3. **分手前后的对话** — 情绪浓度最高
-4. **日常闲聊** — 量大但信息密度低，有就加上
+**This project does not recommend, bundle, or include any third-party chat history decryption/export tools.** If you have the technical ability and understand the risks, you can search GitHub yourself for currently available solutions, but note:
 
-记录量大的话可以分批导入，用「追加记录」功能增量更新。
+- These tools may stop working at any time
+- Using such tools may violate platform terms of service
+- This project makes no guarantees about the safety or legality of third-party tools
 
-*最后更新：2026 年 4 月*
+---
+
+## What Content is Most Valuable?
+
+Regardless of which method you use, prioritize providing this content (in order of value):
+
+1. **Late-night conversations** — best at revealing true personality
+2. **Arguments/conflict records** — reactions during conflict are more authentic than everyday chat
+3. **Conversations around the breakup** — highest emotional intensity
+4. **Casual everyday chat** — accumulates habitual expressions and rhythms
+5. **Voice message transcriptions** — if you have them

@@ -1,48 +1,48 @@
-# 数据与隐私合规说明
+# Data and Privacy Compliance
 
-## 数据处理方式
+## Data Handling
 
-本项目的所有数据处理均在用户本地完成。具体而言：
+All data processing in this project is done locally on the user's device. Specifically:
 
-- 聊天记录由用户自行导出，项目不提供任何远程数据抓取能力
-- 导出的聊天记录由 Claude Code 在本地解析，不经过任何第三方服务器
-- 生成的前任 Skill 文件（persona.md、memory.md）保存在用户本地的 `exes/` 目录，已被 `.gitignore` 排除，不会被提交到 Git 仓库
-- 项目本身不包含任何数据上传、远程存储或遥测功能
+- Chat history is exported by the user themselves; the project provides no remote data extraction capabilities
+- Exported chat history is parsed locally by Claude Code, without passing through any third-party servers
+- Generated ex Skill files (persona.md, memory.md) are saved to the user's local `exes/` directory, which is excluded by `.gitignore` and will not be committed to the Git repository
+- The project itself contains no data upload, remote storage, or telemetry features
 
-唯一的网络交互是 Claude Code 与 Anthropic API 之间的对话请求，这部分受 [Anthropic 使用政策](https://www.anthropic.com/policies) 约束。
+The only network interaction is the conversation requests between Claude Code and the Anthropic API, which are governed by the [Anthropic Usage Policy](https://www.anthropic.com/policies).
 
-## 合法性边界
+## Legal Boundaries
 
-**允许的用途：**
+**Permitted uses:**
 
-- 提取自己参与的聊天记录，用于个人回忆与情感疗愈
-- 基于自己的记忆描述生成 AI 人格，仅供个人使用
+- Extracting chat history from conversations you participated in, for personal reflection and emotional healing
+- Generating AI personas based on your own memory descriptions, for personal use only
 
-**禁止的用途：**
+**Prohibited uses:**
 
-- 未经对方知情或同意，公开分享生成的 AI 人格或对话内容
-- 将生成的 AI 人格用于骚扰、跟踪、冒充或欺诈
-- 利用本项目生成涉及未成年人的任何内容
-- 将聊天记录或生成内容用于商业用途或传播
+- Sharing generated AI personas or conversation content publicly without the other person's knowledge or consent
+- Using generated AI personas for harassment, stalking, impersonation, or fraud
+- Using this project to generate any content involving minors
+- Using chat history or generated content for commercial purposes or distribution
 
-## 聊天记录的法律属性
+## Legal Nature of Chat History
 
-微信、QQ 等平台的聊天记录属于用户的个人数据。用户有权导出和备份自己参与的对话内容。但需注意：
+Chat history from platforms like WeChat and QQ constitutes the user's personal data. Users have the right to export and back up conversation content they participated in. However, note that:
 
-- 聊天记录中包含对方的发言，对方对其发言内容享有相应权利
-- 不同司法管辖区对个人数据的保护程度不同，请遵守当地法律
-- 本项目仅提供技术工具，不构成任何法律建议
+- Chat history contains messages from the other party, who retains corresponding rights to their messages
+- Different jurisdictions have different levels of personal data protection; please comply with local laws
+- This project provides technical tools only and does not constitute legal advice
 
-## 心理健康提示
+## Mental Health Notice
 
-本项目的初衷是帮助用户完成情感记忆的数字化存档，而非替代真实的人际关系。如果你在使用过程中发现自己：
+The original intent of this project is to help users digitally archive emotional memories, not to replace real human relationships. If during use you find that you:
 
-- 无法停止与 AI 人格对话，影响了正常生活
-- 产生了想要联系前任的强烈冲动
-- 情绪持续低落或出现自伤想法
+- Cannot stop conversing with the AI persona, affecting normal life
+- Experience strong urges to contact your ex
+- Feel persistently low mood or have thoughts of self-harm
 
-请暂停使用，并考虑寻求专业心理咨询帮助。
+Please pause use and consider seeking professional psychological counseling.
 
 ---
 
-*本文档最后更新：2026 年 4 月*
+*This document last updated: April 2026*

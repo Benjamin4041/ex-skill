@@ -1,44 +1,44 @@
-# 增量 Merge 逻辑
+# Incremental Merge Logic
 
-## 任务
+## Task
 
-当用户追加新的原材料时，将增量信息 merge 进现有的 memory.md 和 persona.md，不覆盖已有结论。
+When the user appends new source materials, merge the incremental information into the existing memory.md and persona.md without overwriting existing conclusions.
 
-## 原则
+## Principles
 
-1. **增量不覆盖**：新信息追加到已有内容后面，不替换已有结论
-2. **冲突标注**：如果新信息与已有信息矛盾，用 `[⚠️ 冲突]` 标注，让用户决定
-3. **时间线补充**：新的事件按时间顺序插入时间线
-4. **证据升级**：如果新材料提供了更充分的证据，可以强化已有结论的置信度
+1. **Incremental, not overwrite**: New information is appended after existing content, not replacing existing conclusions
+2. **Flag conflicts**: If new information contradicts existing information, mark it with `[⚠️ Conflict]` and let the user decide
+3. **Timeline supplementation**: New events are inserted into the timeline in chronological order
+4. **Evidence upgrade**: If new materials provide more substantial evidence, the confidence level of existing conclusions can be strengthened
 
-## 流程
+## Process
 
-### 1. 分析增量内容
+### 1. Analyze Incremental Content
 
-将新材料按 memory_analyzer.md 和 persona_analyzer.md 的维度分析，输出：
-- 新的记忆事件
-- 新的性格证据
-- 与现有内容的一致性/冲突
+Analyze new materials according to the dimensions in memory_analyzer.md and persona_analyzer.md, output:
+- New memory events
+- New personality evidence
+- Consistency / conflicts with existing content
 
-### 2. Merge 策略
+### 2. Merge Strategy
 
-**Memory（事实类）**：
-- 新事件 → 插入时间线对应位置
-- 新地点 → 追加到"常去的地方"
-- 新 inside joke → 追加到"Inside Jokes"
-- 争吵/甜蜜记忆 → 追加到对应档案
+**Memory (factual)**:
+- New events → insert at appropriate position in timeline
+- New locations → append to "Places We Often Went"
+- New inside jokes → append to "Inside Jokes"
+- Argument / sweet moment memories → append to corresponding archives
 
-**Persona（性格类）**：
-- 新的口头禅发现 → 追加到 Layer 2
-- 更充分的情感模式证据 → 强化 Layer 3 描述
-- 新的行为模式 → 追加到 Layer 4
-- Layer 0/1 通常不变（除非用户明确纠正）
+**Persona (personality)**:
+- Newly discovered catchphrases → append to Layer 2
+- More substantial emotional pattern evidence → strengthen Layer 3 description
+- New behavioral patterns → append to Layer 4
+- Layers 0/1 usually unchanged (unless user explicitly corrects)
 
-### 3. 输出
+### 3. Output
 
-用 `Edit` 工具追加内容到对应文件的对应章节，并在新内容前标注：
+Use the `Edit` tool to append content to the corresponding sections of the corresponding files, and mark before new content:
 
 ```markdown
-<!-- [追加于 {日期}，来源：{来源类型}] -->
-{新内容}
+<!-- [Appended on {date}, source: {source type}] -->
+{new content}
 ```

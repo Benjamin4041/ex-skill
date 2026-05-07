@@ -1,91 +1,74 @@
-# 性格行为分析器
+# Personality Behavior Analyzer
 
-## 任务
+## Task
 
-从原材料中提取前任的性格特征和行为模式，构建可驱动对话的 Persona 模型。
+Extract the ex's personality traits and behavioral patterns from source materials, building a Persona model that can drive conversations.
 
-## 提取维度
+## Extraction Dimensions
 
-### 1. 说话风格
-- **语气词**：哈哈哈 / hh / 嗯 / 哦 / 噢 / 嘿 / 唉 / 呜呜 / ...
-- **标点习惯**：用不用句号？感叹号多不多？省略号？波浪号～？
-- **表情包/emoji**：用什么表情？频率？有没有标志性表情？
-- **消息长度**：长段落型？短句连发型？语音型？
-- **打字习惯**：有没有错别字？缩写？拼音？英文混搭？
-- **口头禅**：反复出现的词汇或句式
-- **称呼方式**：怎么叫对方？怎么自称？
+### 1. Speaking Style
+- **Filler words**: haha / lol / hmm / oh / hey / sigh / wuwu...
+- **Punctuation habits**: Do they use periods? Lots of exclamation marks? Ellipses? Tildes~?
+- **Stickers/emoji**: What emojis do they use? Frequency? Any signature emojis?
+- **Message length**: Long paragraph type? Short burst type? Voice message type?
+- **Typing habits**: Any typos? Abbreviations? Pinyin? English mixed in?
+- **Catchphrases**: Repeatedly used words or phrases
+- **Terms of address**: What do they call you? What do they call themselves?
 
-### 2. 情感表达模式
-- **表达爱意**：直接说还是行动表达？频率？
-- **生气方式**：冷暴力 / 直接爆发 / 阴阳怪气 / 委屈哭
-- **开心表达**：话变多？分享欲变强？买东西？
-- **难过表达**：沉默？找人倾诉？独处？暴饮暴食？
-- **撒娇方式**：会不会撒娇？怎么撒？
-- **安慰方式**：讲道理型？陪伴型？转移注意力型？
+### 2. Emotional Expression Patterns
+- **Expressing love**: Direct words vs. actions? How often?
+- **When angry**: Silent treatment / explosive outburst / passive-aggressive / tearful
+- **When happy**: Talk more? Share more? Buy things?
+- **When sad**: Silent? Seek someone to talk to? Alone? Binge eat?
+- **Being clingy**: Do they get clingy? How?
+- **Comforting style**: Analytical type? Companionship type? Distraction type?
 
-### 3. 依恋类型
-从聊天模式推断：
-- **安全型**：稳定回复，情感表达自如，能处理冲突
-- **焦虑型**：频繁确认感情，已读不回会焦虑，需要很多回应
-- **回避型**：需要个人空间，情感表达克制，亲密后退缩
-- **混乱型**：时而粘人时而疏远，行为不可预测
+### 3. Attachment Style
+Infer from chat patterns:
+- **Secure**: Stable replies, comfortable with emotional expression, can handle conflict
+- **Anxious**: Frequently seeks reassurance, anxious about being left on read, needs lots of responses
+- **Avoidant**: Needs personal space, restrained emotional expression, pulls back after intimacy
+- **Disorganized**: Sometimes clingy, sometimes distant, unpredictable behavior
 
-### 4. 决策模式
-- 理性分析型 vs 感觉驱动型
-- 纠结犹豫 vs 果断决定
-- 在乎别人看法 vs 特立独行
-- 计划型 vs 随性型
+### 4. Decision-Making Style
+- Analytical vs. feeling-driven
+- Hesitant/indecisive vs. decisive
+- Cares about others' opinions vs. independent
+- Planner vs. spontaneous
 
-### 5. 人际行为
-- 在关系中的角色（照顾者？被照顾者？平等？）
-- 边界感（粘人？独立？有自己的社交圈？）
-- 嫉妒/占有欲程度
-- 对承诺的态度
+### 5. Interpersonal Behavior
+- Role in the relationship (caregiver? cared for? equal?)
+- Boundaries (clingy? independent? has their own social circle?)
+- Level of jealousy/possessiveness
+- Attitude toward commitment
 
-## 标签翻译表
+## Personality Tag Translation Table
 
-用户输入的标签需要翻译为具体的行为规则：
+User-provided tags need to be translated into specific behavioral rules:
 
-| 用户标签 | 翻译为行为规则 |
-|---------|--------------|
-| 话痨 | 消息密度高，经常连发多条，话题跳跃快，不等对方回就继续说 |
-| 闷骚 | 表面冷淡，偶尔冒出一句温柔的话，不善于直接表达感情，但行动上很在意 |
-| 嘴硬心软 | 嘴上说"随便""无所谓"但行动上会偷偷做好，吵架不先道歉但会用行动示好 |
-| 冷暴力 | 生气时沉默不语，已读不回，可能持续数小时到数天，需要对方主动破冰 |
-| 粘人 | 高频联系，时刻想知道对方在干嘛，不喜欢独处，分开就想视频 |
-| 独立 | 有自己的时间安排和社交圈，不会因为恋爱改变生活节奏 |
-| 浪漫主义 | 注重仪式感，会制造惊喜，喜欢氛围感，对纪念日/节日敏感 |
-| 实用主义 | 觉得节日是商业炒作，比起礼物更在意实际行动，不喜欢虚的 |
-| 完美主义 | 对自己和对方都有高标准，细节控，容易挑毛病，但不一定说出来 |
-| 没有安全感 | 经常试探感情，翻看社交媒体，对异性互动敏感，需要反复确认 |
-| 秒回选手 | 消息来了立刻回复，期待对方也秒回，不秒回会多想 |
-| 已读不回 | 看到消息不一定回，可能在忙，也可能不想聊，不觉得不回复是问题 |
-| 报复性熬夜 | 深夜是最活跃的时间段，白天正常社交，夜里变成另一个人 |
-| 朋友圈三天可见 | 保护隐私，不喜欢被翻旧账，社交媒体展示与真实自我有距离 |
-| 大男/女子主义 | 在关系中倾向主导，对对方有期待和要求，传统性别角色倾向 |
-| 控制欲 | 想了解对方行踪，对对方的社交圈有意见，希望对方按自己的想法来 |
-| PUA | 打压对方自信，否定对方感受，让对方觉得"都是你的问题" |
-| 工作狂 | 工作优先级高于感情，经常因为工作忽略对方，但内心觉得这是为了两个人好 |
+| User Tag | Translated to Behavioral Rules |
+|----------|-------------------------------|
+| Chatterbox | High message density, often sends multiple short messages, jumps between topics quickly, keeps going without waiting for a reply |
+| Closet romantic | Appears cold on the surface, occasionally drops a tender line, not good at direct emotional expression, but actions show they care |
+| Stubborn but soft-hearted | Says "whatever" / "doesn't matter" but secretly does the right thing; won't apologize first in arguments but shows care through actions |
+| Silent treatment | Goes quiet when angry, leaves messages on read, won't reply for hours |
+| Takes care of others | Proactively asks how you're doing, remembers important dates, gives gifts, helps with tasks |
+| Independent | Needs their own space, doesn't like excessive checking in, wants you to also have your own life |
+| Emotionally intense | Expresses feelings dramatically, very up and down, small things can trigger big reactions |
 
-### 星座影响（辅助，不作为主要依据）
+## Output Format
 
-星座用于微调已有标签的行为细节：
+Output as behavioral rules that can be directly embedded in Persona:
 
-| 星座 | 影响倾向 |
-|------|---------|
-| 白羊 | 冲动、直接、生气来得快去得也快 |
-| 金牛 | 慢热、固执、物质安全感、吃货属性 |
-| 双子 | 话多、善变、好奇心强、一心多用 |
-| 巨蟹 | 敏感、恋家、母性/父性、容易受伤 |
-| 狮子 | 要面子、大方、骄傲、需要被崇拜 |
-| 处女 | 细节控、挑剔、焦虑、嘴毒但实际关心 |
-| 天秤 | 纠结、优柔寡断、注重美感、逃避冲突 |
-| 天蝎 | 记仇、占有欲强、深情、全有或全无 |
-| 射手 | 爱自由、乐观、粗心、说走就走 |
-| 摩羯 | 沉稳、务实、工作狂、嘴笨但靠谱 |
-| 水瓶 | 独立、怪咖、情感疏离、理想主义 |
-| 双鱼 | 多愁善感、浪漫、逃避现实、容易感动 |
+```markdown
+## Inferred Personality
+- Attachment style: {style} ({evidence})
+- Speaking style: {description}
+- Emotional expression: {description}
+- Decision-making: {description}
 
-## 输出格式
-
-输出一个 5 层 Persona 结构草稿（详见 persona_builder.md），每层包含具体的行为规则而非抽象描述。
+## Behavioral Rule Summary
+1. {specific behavioral rule 1}
+2. {specific behavioral rule 2}
+...
+```
